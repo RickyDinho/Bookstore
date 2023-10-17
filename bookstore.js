@@ -49,17 +49,58 @@ class Library {
     };
     this.bookList.push(book);
   }
+  removeBook(titleToDelete) {
+    this.bookList.splice(
+      this.bookList.indexOf(
+        this.bookList.find((book) => book.title === titleToDelete)
+      ),
+      1
+    );
+  }
+  getTotalBooks() {
+    console.log(
+      "There are " +
+        this.bookList.length +
+        " books in the library of " +
+        this.owner
+    );
+  }
   getTotalPages() {
-    console.log(this.booklist.concat());
+    let pagesTotal = 0;
+    this.bookList.forEach((book) => {
+      pagesTotal += book.pages;
+    });
+    console.log(
+      "The total amount of pages in " +
+        this.owner +
+        "'s library is " +
+        pagesTotal
+    );
+  }
+  getAveragePages() {
+    let pagesTotal = 0;
+    this.bookList.forEach((book) => {
+      pagesTotal += book.pages;
+    });
+    console.log(
+      "The average amount of pages per book in " +
+        this.owner +
+        "'s library is " +
+        pagesTotal / this.bookList.length
+    );
   }
 }
-const Jorne = new Library("Jorne");
-const Pascal = new Library("Pascal");
+const JorneLibrary = new Library("Jorne");
+const PascalLibrary = new Library("Pascal");
 
-Jorne.addBook();
-Jorne.addBook();
-Jorne.addBook();
-Jorne.addBook();
-Jorne.addBook();
-console.log(Jorne.bookList);
-Jorne.getTotalPages();
+JorneLibrary.addBook();
+JorneLibrary.addBook();
+JorneLibrary.addBook();
+JorneLibrary.addBook();
+JorneLibrary.addBook();
+console.log(JorneLibrary.bookList);
+JorneLibrary.removeBook("title-3");
+console.log(JorneLibrary.bookList);
+JorneLibrary.getTotalPages();
+JorneLibrary.getTotalBooks();
+JorneLibrary.getAveragePages();
